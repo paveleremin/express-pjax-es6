@@ -9,8 +9,8 @@
   },
   "license": "ISC",
   "scripts": {
-    "start": "NODE_ENV=production PORT=8080 node --harmony index",
-    "dev": "NODE_ENV=development DEBUG=app ./node_modules/.bin/gulp --harmony watch",
+    "start": "NODE_ENV=production PORT=8080 node index --harmony",
+    "dev": "NODE_ENV=development DEBUG=app ./node_modules/.bin/gulp watch --harmony",
     "test": "NODE_ENV=test echo 'Error: no test specified' && exit 1",
     "lint": "./node_modules/.bin/eslint index.js config app public",
     "build": "./node_modules/.bin/gulp --harmony",
