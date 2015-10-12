@@ -4,7 +4,6 @@ http://express-pjax-es6.herokuapp.com
 ### Install and launch the app
 ```
 npm install
-bower install
 npm run dev
 open browser with http://localhost:3000
 ```
