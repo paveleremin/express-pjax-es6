@@ -4,14 +4,14 @@ import twig from 'twig';
 export default (app) => {
 
     // View path depends on env
-    const viewPath = config.env == 'prod'
+    const viewPath = config.env == 'production'
         ? 'build/views'
         : 'app';
 
     app.set('views', `${config.rootPath}/${viewPath}`);
 
     // Twig templating engine settings
-    if (config.env == 'dev' || config.env == 'test') {
+    if (config.env == 'development' || config.env == 'test') {
         app.set('twig options', {
             strict_variables: true
         });

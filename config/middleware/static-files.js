@@ -6,7 +6,7 @@ import config from '../config';
 
 export default (app) => {
 
-    if (config.env == 'dev') {
+    if (config.env == 'development') {
         // favicon
         app.use(favicon(path.resolve(config.rootPath, 'public', 'favicon.ico')));
         // static files

@@ -7,10 +7,10 @@ export default (app) => {
     // don't log during tests
     if (config.env == 'test') return;
 
-    let log = 'dev';
+    let log = 'development';
 
     // Use winston on production
-    if (config.env == 'prod') {
+    if (config.env == 'production') {
         log = {
             stream: {
                 write: (message) => {
