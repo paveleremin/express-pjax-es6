@@ -5,7 +5,7 @@ const express = require('express');
 
 const app = express();
 
-app.set('env', process.env.NODE_ENV || 'dev');
+app.set('env', process.env.NODE_ENV || 'development');
 app.set('host', process.env.HOST || 'localhost');
 app.set('port', process.env.PORT || 3000);
 
