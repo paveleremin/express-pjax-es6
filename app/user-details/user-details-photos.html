@@ -1,0 +1,16 @@
+{% if (photos and photos.count) %}
+    <h3>
+        Photos
+    </h3>
+    <ul class="photos">
+        {% for photo in photos.items %}
+            {% for size in photo.sizes %}
+                {% if (size.type == 'm') %}
+                    <li>
+                        <img src="{{ size.src }}" alt=""/>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}

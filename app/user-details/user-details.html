@@ -1,0 +1,66 @@
+{% extends '../_layouts/default.html' %}
+
+{% block title %}User details: {{ user.first_name }} {{ user.last_name }}{% endblock %}
+{% block bodyClassName %}user-details{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2 class="mt0 user-name">
+                    {{ user.first_name }}
+                    {{ user.last_name }}
+                </h2>
+            </div>
+            <div class="col-sm-4 text-right user-online online-status">
+                {% include './user-details-online.html' with {user: user} %}
+            </div>
+        </div>
+        <div class="row mb20">
+            <div class="col-sm-4">
+                <img
+                    src="{{ user.photo_200 or 'http://vk.com/images/camera_a.gif' }}"
+                    class="img-responsive"
+                    alt=""/>
+            </div>
+            <div class="col-sm-8">
+                <table class="table mb0">
+                    <thead>
+                        <tr>
+                            <td><b>Birth date:</b></td>
+                            <td>{{ user.bDate }}</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Photos:</b></td>
+                            <td>{{ user.counters.photos }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Videos:</b></td>
+                            <td>{{ user.counters.videos }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Audios:</b></td>
+                            <td>{{ user.counters.audios }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Followers:</b></td>
+                            <td>{{ user.counters.followers }}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-vk"></i></td>
+                            <td>
+                                <a href="http://vk.com/id{{ user.id }}" target="_blank">
+                                    vk.com/id{{ user.id }}
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% include './user-details-friends.html' with {firends: friends} %}
+        {% include './user-details-photos.html' with {photos: photos} %}
+    </div>
+{% endblock %}

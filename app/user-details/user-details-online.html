@@ -1,0 +1,8 @@
+{% if (user.online) %}
+    {% if (user.online_mobile) %}
+        <i class="fa fa-mobile"></i>
+    {% endif %}
+    Online
+{% else %}
+    {{ user.lastSeen }}
+{% endif %}

@@ -1,0 +1,36 @@
+{% if (friends and friends.count) %}
+    <h3>
+        Friends
+        <a
+            data-pjax="#friends-list"
+            data-pjax-scroll=""
+            href="/users/{{ user.id }}"
+            class="update-friends">
+            <i class="fa fa-refresh"></i>
+        </a>
+    </h3>
+    <ul id="friends-list" class="list-inline">
+        {% for user in friends.items %}
+            <li>
+                {% embed './user-details-link.html' with {user: user} %}
+                    {% block child %}
+                        {{ parent() }}
+                        <img
+                            src="{{ user.photo_50 }}"
+                            class="img-responsive"
+                            alt=""/>
+                    {% endblock %}
+                {% endembed %}
+            </li>
+        {% endfor %}
+        {% if (friends.count > friends.items.length) %}
+        <li class="friends-others">
+                <div>
+                    and<br/>
+                    {{ friends.count - friends.items.length }}<br/>
+                    others
+                </div>
+            </li>
+        {% endif %}
+    </ul>
+{% endif %}

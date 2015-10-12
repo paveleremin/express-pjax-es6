@@ -1,0 +1,27 @@
+{% extends '../_layouts/default.html' %}
+
+{% block content %}
+    <div id="page">
+        <div class="container" id="content">
+            <div class="error-template">
+                <h1>Oops!</h1>
+
+                <h2>404 Not Found</h2>
+
+                <div class="error-details">
+                    Sorry, an error has occured, requested page not found!
+                </div>
+                <div class="error-actions">
+                    <a href="/users" class="btn btn-link btn-lg">
+                        <i class="fa fa-users"></i>
+                        Random users
+                    </a>
+                    <a href="/pretty" class="btn btn-link btn-lg">
+                        <i class="fa fa-female"></i>
+                        Pretty girls
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

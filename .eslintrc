@@ -1,0 +1,21 @@
+{
+    "extends": "eslint:recommended",
+    "rules":{
+        "eol-last": 2,
+        "indent": 2,
+        "no-lonely-if": 2, // disallow if as the only statement in an else block
+        "no-spaced-func": 2,
+        "quotes": [2, "single"],
+        "semi": [2, "always"],
+        "space-before-blocks": 2,
+        "arrow-spacing": 2,
+        "no-var": 2
+    },
+    "env": {
+        "jquery": true,
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "parser": "babel-eslint"
+}

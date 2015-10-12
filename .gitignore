@@ -1,0 +1,10 @@
+.tmp
+.monitor
+.idea
+.DS_Store
+Thumbs.db
+node_modules/
+build/
+bower_components/
+config/env/env.json
+npm-debug.log

@@ -1,0 +1,9 @@
+{% if (user.deactivated) %}
+    <a href="#" onclick="return false" class="disabled">
+        {% block child %}{% endblock %}
+    </a>
+{% else %}
+    <a href="/users/{{ user.id }}">
+        {% block child %}{% endblock %}
+    </a>
+{% endif %}
