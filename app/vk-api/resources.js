@@ -36,7 +36,7 @@ export default class  {
     request(params, additionalUrl) {
         const url = this.getUrl(params, additionalUrl);
 
-        debug('Resource GET request to %s', url);
+        debug('=> (GET) %s', url);
 
         return new Promise((resolve, reject) => {
             try {
@@ -51,11 +51,9 @@ export default class  {
                 request
                     .set('Accept', 'application/json')
                     .end((err, res) => {
-                        debug('Received response %s from %s', res && res.status, url);
+                        debug('=> (%s) %s', res && res.status, url);
                         err ? reject(err) : resolve(res);
                     });
-
-                return request;
             }
             catch (e) {
                 reject(e);

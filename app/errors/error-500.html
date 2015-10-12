@@ -1,15 +1,20 @@
-<div id="page">
-    <div class="container" id="content">
-        <div class="error-template">
-            <h1>Oops!</h1>
+{% extends '../_layouts/default.html' %}
 
-            <h2>500 Internal Error</h2>
+{% block content %}
+    <div id="page">
+        <div class="container" id="content">
+            <div class="error-template">
+                <h1>Oops!</h1>
 
-            <div class="error-details">
-                Sorry, an error has occured, internal server error!
-                <br/>
-                Try to refresh page later
+                <h2>500 Internal Error</h2>
+
+                <div class="error-details">
+                    Sorry, an error has occured, internal server error!
+                    Probably, it happened on the side of the external API.
+                    <br/>
+                    Try to refresh page later
+                </div>
             </div>
         </div>
     </div>
-</div>
+{% endblock %}

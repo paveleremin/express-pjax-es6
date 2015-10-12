@@ -40,6 +40,11 @@ export default (req, res, next) => {
 
         const { user, friends, photos } = result;
 
+        if (user.deactivated) {
+            res.redirect('/');
+            return;
+        }
+
         // additional view data
         user.lastSeen = moment.utc(user.last_seen.time * 1000).format('LLL');
         user.bDate = bDate(user.bdate);

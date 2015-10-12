@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 
 app.set('env', process.env.NODE_ENV || 'development');
-app.set('host', process.env.HOST || 'localhost');
+app.set('host', process.env.HOST || '0.0.0.0');
 app.set('port', process.env.PORT || 3000);
 
 // Bootstrap application settings
@@ -18,7 +18,7 @@ require('./app/recently-viewed/recently-viewed-service')(app);
 // Bootstrap routes
 require('./config/routes')(app);
 
-app.listen(app.get('port'), () => {
+app.listen(app.get('port'), app.get('host'), () => {
     /*eslint no-console: 0*/
     console.log(
         'Express %s server listening on http://%s:%s',
