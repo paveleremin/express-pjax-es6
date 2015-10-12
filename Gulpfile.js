@@ -145,11 +145,8 @@ gulp.task('watch', () => {
         execMap: {
             js: 'node --harmony'
         },
-        env: {
-            NODE_ENV: 'dev',
-            DEBUG: 'app'
-        },
         watch: [
+            'index.js',
             'app/**/*.js',
             'config/**/*.js'
         ]

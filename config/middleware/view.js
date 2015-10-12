@@ -1,17 +1,19 @@
-import config from '../config';
 import twig from 'twig';
+import url from 'url';
+
+import config from '../config';
 
 export default (app) => {
 
     // View path depends on env
-    const viewPath = config.env == 'production'
+    const viewPath = app.get('env') == 'production'
         ? 'build/views'
         : 'app';
 
     app.set('views', `${config.rootPath}/${viewPath}`);
 
     // Twig templating engine settings
-    if (config.env == 'development' || config.env == 'test') {
+    if (app.get('env') == 'development' || app.get('env') == 'test') {
         app.set('twig options', {
             strict_variables: true
         });
@@ -23,19 +25,13 @@ export default (app) => {
 
     app.use((req, res, next) => {
 
-        function activeClassName(link, className = 'active') {
+        res.locals.activeClass = (link, className = 'active') => {
+            const pathName = url.parse(req.url).pathname;
             if (link == '/') {
-                return req.url == '/' ? className : '';
+                return pathName == '/' ? className : '';
             }
-            return req.url.indexOf(link) != -1 ? className : '';
-        }
-
-        res.locals.activeClassName = activeClassName;
-        res.locals.activeClass = (link, className) => {
-            const activeClassName = activeClassName(link, className);
-            return activeClassName ? ` class="${activeClassName}"` : '';
+            return pathName.indexOf(link) != -1 ? className : '';
         };
-        res.env = config.env;
 
         next();
 
