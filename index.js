@@ -18,14 +18,12 @@ require('./app/recently-viewed/recently-viewed-service')(app);
 // Bootstrap routes
 require('./config/routes')(app);
 
-app.listen(app.get('port'), app.get('host'));
-
-/*eslint no-console: 0*/
-console.log(
-    'Express %s server listening on http://%s:%s',
-    app.get('env'),
-    app.get('host'),
-    app.get('port')
-);
-
-module.exports = app;
+app.listen(app.get('port'), app.get('host'), () => {
+    /*eslint no-console: 0*/
+    console.log(
+        'Express %s server listening on http://%s:%s',
+        app.get('env'),
+        app.get('host'),
+        app.get('port')
+    );
+});
