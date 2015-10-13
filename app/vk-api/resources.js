@@ -44,16 +44,14 @@ export default class  {
                     .get(url)
                     .timeout(6000)
                     .send()
-                    .set('Accept', 'application/json');
+                    .set('Accept', 'application/json')
+                    .end((err, res) => {
+                        debug('<= (%s) %s', res && res.status, url);
+                        err ? reject(err) : resolve(res);
+                    });
                 if (process.env.BROWSER) {
                     request.jsonp();
                 }
-                request
-                    .set('Accept', 'application/json')
-                    .end((err, res) => {
-                        debug('=> (%s) %s', res && res.status, url);
-                        err ? reject(err) : resolve(res);
-                    });
             }
             catch (e) {
                 reject(e);
