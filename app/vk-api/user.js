@@ -9,7 +9,7 @@ class User extends Resource {
             user_ids: id
         };
 
-        return this.request(params, '/users.get').then((data) => {
+        return this.request(params, '/users.get', (data) => {
             return data.body.response[0];
         });
     }
@@ -19,7 +19,7 @@ class User extends Resource {
             fields: fields,
             user_ids: ids
         };
-        return this.request(params, '/users.get').then((data) => {
+        return this.request(params, '/users.get', (data) => {
             return data.body.response;
         });
     }
@@ -30,7 +30,7 @@ class User extends Resource {
             count: limit
         });
 
-        return this.request(params, '/friends.get').then((data) => {
+        return this.request(params, '/friends.get', (data) => {
             return data.body.response;
         });
     }
@@ -72,7 +72,7 @@ class User extends Resource {
             count: limit
         };
 
-        return this.request(params, '/photos.get').then((data) => {
+        return this.request(params, '/photos.get', (data) => {
             return data.body.response;
         });
     }

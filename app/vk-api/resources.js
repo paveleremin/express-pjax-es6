@@ -33,30 +33,37 @@ export default class  {
         return url;
     }
 
-    request(params, additionalUrl) {
+    request(params, additionalUrl, resInterceptor) {
         const url = this.getUrl(params, additionalUrl);
 
         debug('=> (GET) %s', url);
 
-        return new Promise((resolve, reject) => {
+        let request = superagent
+            .get(url)
+            .timeout(6000)
+            .set('Accept', 'application/json');
+        if (process.env.BROWSER) {
+            request.jsonp();
+        }
+
+        const promise = new Promise((resolve, reject) => {
             try {
-                const request = superagent
-                    .get(url)
-                    .timeout(6000)
-                    .send()
-                    .set('Accept', 'application/json')
-                    .end((err, res) => {
-                        debug('<= (%s) %s', res && res.status, url);
-                        err ? reject(err) : resolve(res);
-                    });
-                if (process.env.BROWSER) {
-                    request.jsonp();
-                }
+                request.end((err, res) => {
+                    debug('<= (%s) %s', res && res.status, url);
+                    err ? reject(err) : resolve(res);
+                })
+                .send();
             }
             catch (e) {
                 reject(e);
             }
-        });
+        }).then(resInterceptor);
+
+        promise.abort = () => {
+            request.abort();
+        };
+
+        return promise;
     }
 
 }

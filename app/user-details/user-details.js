@@ -35,13 +35,25 @@ export default (req, res, next) => {
     }
 
     promises.user = UserApi.get(id, 'photo_200,bdate,online,last_seen,counters,bdate,status');
+
+    // no need to wait 'photos' and 'friends' response if user.deactivated
+    promises.user.then((user) => {
+        if (user.deactivated) {
+            Object.keys(promises).forEach((key) => {
+                if (key == 'user') return;
+                promises[key].abort();
+                res.redirect('/');
+            });
+        }
+        return user;
+    });
+
     promises.photos = UserApi.photos(id);
     Promise.props(promises).then((result) => {
 
         const { user, friends, photos } = result;
 
         if (user.deactivated) {
-            res.redirect('/');
             return;
         }
 
@@ -60,6 +72,7 @@ export default (req, res, next) => {
             friends: friends,
             photos: photos
         });
+
     }, (err) => {
         next(err);
     });
