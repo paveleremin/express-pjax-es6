@@ -21,7 +21,8 @@ An example you can find at:
 
 *All the code written with ES6: backend, frontend and even build part*
 
-P.S.: If you think this approach is 100% sucks, tell this to:  
+### P.S.
+If you think this approach is 100% sucks, tell this to:  
 github.com  
 jira.com  
 vk.com  
