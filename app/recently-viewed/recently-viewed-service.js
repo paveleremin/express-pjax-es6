@@ -9,21 +9,22 @@ export default (app) => {
             get() {
                 return sess.recentlyViewed || [];
             },
+
             add(id) {
-                if (!sess.recentlyViewed) {
-                    sess.recentlyViewed = [];
-                }
+                let recentlyViewed = this.get();
 
-                const index = sess.recentlyViewed.indexOf(id);
+                const index = recentlyViewed.indexOf(id);
                 if (index != -1) {
-                    sess.recentlyViewed.splice(index, 1);
+                    recentlyViewed.splice(index, 1);
                 }
 
-                else if (sess.recentlyViewed.length >= maxLength) {
-                    sess.recentlyViewed.splice(maxLength, 1);
+                else if (recentlyViewed.length >= maxLength) {
+                    recentlyViewed.splice(maxLength, 1);
                 }
 
-                sess.recentlyViewed.unshift(id);
+                recentlyViewed.unshift(id);
+
+                sess.recentlyViewed = recentlyViewed;
             }
         };
 

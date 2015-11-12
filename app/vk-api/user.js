@@ -19,6 +19,7 @@ class User extends Resource {
             fields: fields,
             user_ids: ids
         };
+
         return this.request(params, '/users.get', (data) => {
             return data.body.response;
         });
